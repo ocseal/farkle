@@ -87,6 +87,8 @@ def choice_helper(scores):
 def main():
     p1score = 0
     p2score = 0
+    p1threshold = False
+    p2threshold = False
     num_dice = 6
     while p1score < 10000:
         x = input("Press r to roll or e to end your turn.")
