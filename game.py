@@ -102,13 +102,19 @@ def main():
             else:
                 print(choice_helper(scores))
                 y = input("Select the score you'd like to keep.")
-                p1choice = choice_helper(scores)[int(y) - 1]
+                p1choice = [item for item in choice_helper(scores) if item[0] == int(y)][0]
                 p1score += p1choice[1]
-                num_dice = 6 if num_dice - m[0] == 0 else num_dice - m[0]
-            x = input("Score: " + str(p1score) + ". Dice: " + str(num_dice) + ".")
+                num_dice = num_dice - p1choice[0]
+                if num_dice == 0:
+                    num_dice = 6
+            print("Score: " + str(p1score) + ". Dice: " + str(num_dice) + ".")
 
 
 agent.curr_score = 0
 
 if __name__ == '__main__':
     main()
+
+# dynamic programming starting from 10000. values of leaf nodes are WPA.
+# calculate win prob. given score. opponent's WPA given their score factored in
+# dynamic programming + expectimax of leaf nodes of win probabilities.
